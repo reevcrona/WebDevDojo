@@ -1,6 +1,22 @@
 [
-  { "name": "Javascript", "imageUrl": "/javascript-logo.png" },
-  { "name": "Typescript", "imageUrl": "/typescript-logo.png" },
-  { "name": "React", "imageUrl": "/react-logo.png" },
-  { "name": "Network", "imageUrl": "/network-image.jpg" }
+  {
+    "name": "Javascript",
+    "imageUrl": "/javascript-logo.png",
+    "imageMeta": { "width": 1280, "height": 1280 }
+  },
+  {
+    "name": "Typescript",
+    "imageUrl": "/typescript-logo.png",
+    "imageMeta": { "width": 512, "height": 512 }
+  },
+  {
+    "name": "React",
+    "imageUrl": "/react-logo.png",
+    "imageMeta": { "width": 2400, "height": 2400 }
+  },
+  {
+    "name": "Network",
+    "imageUrl": "/network-image.jpg",
+    "imageMeta": { "width": 4500, "height": 4500 }
+  }
 ]

@@ -15,6 +15,20 @@
       "when": 1757425006037,
       "tag": "0001_handy_the_initiative",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1757427672083,
+      "tag": "0002_melodic_krista_starr",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1757430969323,
+      "tag": "0003_daily_omega_red",
+      "breakpoints": true
     }
   ]
 }

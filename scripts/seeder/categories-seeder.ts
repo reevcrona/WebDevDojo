@@ -1,11 +1,16 @@
 import { db } from "@/lib/db";
 import { categories } from "@/server/db/schema/categories";
 import { z } from "zod";
+import { sql } from "drizzle-orm";
 import jsonCategories from "../data/categories.json" assert { type: "json" };
 
 const CategorySchema = z.object({
   name: z.string().min(1),
   imageUrl: z.string().regex(/^\/[\w-]+\.(png|jpg|webp)$/i),
+  imageMeta: z.object({
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+  }),
 });
 
 type Category = z.infer<typeof CategorySchema>;
@@ -23,7 +28,21 @@ async function main() {
     return;
   }
   await db.transaction(async (tx) => {
-    await tx.insert(categories).values(validatedCategories);
+    for (const r of validatedCategories) {
+      await tx
+        .insert(categories)
+        .values({
+          name: r.name,
+          imageUrl: r.imageUrl,
+          imageMeta: r.imageMeta,
+        })
+        .onConflictDoUpdate({
+          target: categories.id,
+          set: {
+            imageMeta: sql`excluded.image_meta`,
+          },
+        });
+    }
   });
 }
 
