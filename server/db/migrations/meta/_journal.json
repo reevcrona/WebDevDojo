@@ -8,6 +8,13 @@
       "when": 1757336209396,
       "tag": "0000_far_nitro",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757417222817,
+      "tag": "0001_heavy_the_liberteens",
+      "breakpoints": true
     }
   ]
 }

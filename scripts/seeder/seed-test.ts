@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { users } from "@/server/db/schema";
+import { users } from "@/server/db/schema/users";
 
 async function main() {
   await db

@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { users } from "../app/db/schema";
+import { users } from "@/server/db/schema/users";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
