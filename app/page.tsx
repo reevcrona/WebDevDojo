@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { createUser } from "./lib/actions";
+import { createUser } from "../lib/actions";
 export default async function Home() {
   return (
     <form action={createUser}>
