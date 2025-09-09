@@ -1,0 +1,6 @@
+[
+  { "name": "Javascript", "imageUrl": "/javascript-logo.png" },
+  { "name": "Typescript", "imageUrl": "/typescript-logo.png" },
+  { "name": "React", "imageUrl": "/react-logo.png" },
+  { "name": "Network", "imageUrl": "/network-image.jpg" }
+]

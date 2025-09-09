@@ -1,5 +1,5 @@
 {
-  "id": "85cfa108-494f-4d38-888d-74a5f6674aa2",
+  "id": "f3352a0d-0981-491a-b3e8-2e8d55ab1ae3",
   "prevId": "77550770-3a87-445c-9527-5e6662d587a3",
   "version": "7",
   "dialect": "postgresql",
@@ -21,6 +21,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp with time zone",
@@ -39,7 +45,15 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "categories_image_url_unique": {
+          "name": "categories_image_url_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "image_url"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
