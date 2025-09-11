@@ -9,7 +9,6 @@
     "lint": "eslint",
     "db:generate": "drizzle-kit generate --config=server/db/drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config=server/db/drizzle.config.ts",
-    "db:seed-users": "tsx scripts/seeder/seed-test.ts",
     "db:seed-cat": "tsx scripts/seeder/categories-seeder.ts"
   },
   "dependencies": {
