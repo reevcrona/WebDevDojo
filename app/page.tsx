@@ -18,7 +18,12 @@ export default async function Home() {
       <ul>
         {categories.map((cat) => (
           <li key={cat.id}>
-            <Image src={cat.imageUrl} alt="Category logo" />
+            <Image
+              src={cat.imageUrl}
+              alt="Category logo"
+              width={cat.imageMeta.width}
+              height={cat.imageMeta.height}
+            />
           </li>
         ))}
       </ul>
