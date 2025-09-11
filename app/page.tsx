@@ -1,24 +1,10 @@
-import Image from "next/image";
+import Link from "next/link";
 
-import { getCategories } from "@/lib/query";
-export default async function Home() {
-  const categories = await getCategories();
-
+export default function Home() {
   return (
     <div className="flex flex-col items-center">
-      <ul className="flex gap-6 mt-10">
-        {categories.map((cat) => (
-          <li className="max-w-[150px]" key={cat.id}>
-            <Image
-              src={cat.imageUrl}
-              alt="Category logo"
-              width={cat.imageMeta.width}
-              height={cat.imageMeta.height}
-              className="rounded-2xl"
-            />
-          </li>
-        ))}
-      </ul>
+      <h1 className="text-4xl text-black">Home</h1>
+      <Link href={"/categories"}>Categories</Link>
     </div>
   );
 }
