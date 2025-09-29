@@ -1,0 +1,50 @@
+[
+  {
+    "categoryId": "17c28105-dc26-4dc5-aa88-081fa0fd4e07",
+    "name": "Type Inference",
+    "slug": "type-inference",
+    "summary": "How TS infers types to reduce manual annotations."
+  },
+  {
+    "categoryId": "17c28105-dc26-4dc5-aa88-081fa0fd4e07",
+    "name": "Generics",
+    "slug": "generics",
+    "summary": "Build reusable, type-safe APIs with generics."
+  },
+  {
+    "categoryId": "b38aea52-8631-4b7d-a464-e975bc50fc29",
+    "name": "State Management",
+    "slug": "state-management",
+    "summary": "useState basics and patterns for local state."
+  },
+  {
+    "categoryId": "b38aea52-8631-4b7d-a464-e975bc50fc29",
+    "name": "Lifecycle & Effects",
+    "slug": "lifecycle-effects",
+    "summary": "Rendering, effects, and cleanup with useEffect."
+  },
+  {
+    "categoryId": "de17efac-e665-4f67-8f60-d07812bb8084",
+    "name": "OSI Model",
+    "slug": "osi-model",
+    "summary": "The 7-layer model and how data flows."
+  },
+  {
+    "categoryId": "de17efac-e665-4f67-8f60-d07812bb8084",
+    "name": "TCP/IP Basics",
+    "slug": "tcp-ip-basics",
+    "summary": "Core protocols and how the internet works."
+  },
+  {
+    "categoryId": "c1fd3360-c99a-4336-89b2-c5a34b5554c6",
+    "name": "DOM Manipulation",
+    "slug": "dom-manipulation",
+    "summary": "Update the UI by querying and changing nodes."
+  },
+  {
+    "categoryId": "c1fd3360-c99a-4336-89b2-c5a34b5554c6",
+    "name": "Event Handling",
+    "slug": "event-handling",
+    "summary": "Interactivity patterns with events & listeners."
+  }
+]
