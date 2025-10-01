@@ -8,7 +8,7 @@ export default async function Page({
   const { slug } = await params;
 
   const topics = await getTopicsByCategorySlug(slug);
-
+  console.log(topics);
   return (
     <>
       <ul className="flex justify-evenly w-full mt-10">

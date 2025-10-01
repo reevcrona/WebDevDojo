@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema/categories";
-import { topics } from "@/drizzle/schema/topics";
 import { eq } from "drizzle-orm";
 export async function getCategories() {
   const rows = await db.select().from(categories);
