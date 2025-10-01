@@ -11,11 +11,12 @@ export async function getCategories() {
 }
 
 export async function getTopicsByCategorySlug(slug: string) {
-  const rows = await db
-    .select()
-    .from(topics)
-    .innerJoin(categories, eq(topics.categoryId, categories.id))
+  const category = db
+    .select({ id: categories.id })
+    .from(categories)
     .where(eq(categories.slug, slug));
 
-  return rows.map((row) => row.topics);
+  return db.query.topics.findMany({
+    where: (t, { inArray }) => inArray(t.categoryId, category),
+  });
 }
