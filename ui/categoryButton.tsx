@@ -3,5 +3,5 @@ type CategoryButtonProps = {
 };
 
 export default function CategoryButton({ name }: CategoryButtonProps) {
-  return <button>{name}</button>;
+  return <button className="text-red-600">{name}</button>;
 }

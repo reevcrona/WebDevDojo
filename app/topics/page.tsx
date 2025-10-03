@@ -8,7 +8,7 @@ export default async function Page() {
     <ul className="flex gap-20 mt-10">
       {data.map((d) => {
         return (
-          <li className="text-red-600" key={d.id}>
+          <li key={d.id}>
             <CategoryButton name={d.name} />
           </li>
         );
