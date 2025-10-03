@@ -8,7 +8,7 @@ type FilterPanelProps = {
 
 export default function FilterPanel({ categories }: FilterPanelProps) {
   return (
-    <div className="bg-black">
+    <div className="">
       <ul className="flex gap-4">
         {categories.map((cat) => {
           return (
