@@ -10,7 +10,19 @@ export async function getCategories() {
 }
 
 export async function getTopics() {
-  return db.query.topics.findMany();
+  const data = await db.query.topics.findMany({
+    with: {
+      category: true,
+    },
+  });
+
+  return data.map((t) => ({
+    id: t.id,
+    name: t.name,
+    slug: t.slug,
+    summary: t.summary,
+    categoryName: t.category.name,
+  }));
 }
 
 export async function getTopicsByCategorySlug(slug: string) {

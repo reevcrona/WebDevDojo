@@ -6,7 +6,14 @@ export default async function TopicsGrid() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {topics.map((topic) => {
         return (
-          <TopicCard key={topic.id} name={topic.name} summary={topic.summary} />
+          <TopicCard
+            key={topic.id}
+            data={{
+              name: topic.name,
+              summary: topic.summary,
+              categoryName: topic.categoryName,
+            }}
+          />
         );
       })}
     </div>

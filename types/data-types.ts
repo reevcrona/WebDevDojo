@@ -1,13 +1,4 @@
-export type Category = {
-  id: string;
-  name: string;
-  slug: string;
-  imageUrl: string;
-  imageAlt: string;
-  imageMeta: {
-    width: number;
-    height: number;
-  };
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { type InferSelectModel } from "drizzle-orm";
+import { categories } from "@/drizzle/schema";
+
+export type Category = InferSelectModel<typeof categories>;
