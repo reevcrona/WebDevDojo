@@ -1,10 +1,18 @@
-import { getCategories } from "@/lib/query";
 import FilterPanel from "@/ui/FilterPanel";
 import Container from "@/ui/Container";
 import TopicsGrid from "@/ui/TopicsGrid";
-export default async function Page() {
-  const data = await getCategories();
-  console.log(data);
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+    categories?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+  const selectedSlugs = (searchParams?.categories ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
   return (
     <main className="flex justify-center min-h-screen p-12">
       <Container>
@@ -14,8 +22,8 @@ export default async function Page() {
             Browse and discover learning resources
           </p>
         </div>
-        <FilterPanel categories={data} />
-        <TopicsGrid />
+        <FilterPanel selectedSlugs={selectedSlugs} />
+        <TopicsGrid query={query} selectedCategorySlugs={selectedSlugs} />
       </Container>
     </main>
   );

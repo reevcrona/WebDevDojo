@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema/categories";
-import { eq } from "drizzle-orm";
+import { eq, ilike, or, and, desc, inArray } from "drizzle-orm";
+import { topics } from "@/drizzle/schema";
 export async function getCategories() {
   const rows = await db.select().from(categories);
   if (rows.length === 0) {
@@ -34,4 +35,55 @@ export async function getTopicsByCategorySlug(slug: string) {
   return db.query.topics.findMany({
     where: (t, { inArray }) => inArray(t.categoryId, category),
   });
+}
+
+export async function getFilteredTopics(
+  query: string,
+  categorySlugs: string[] = []
+) {
+  const raw = (query ?? "").trim();
+  const hasQuery = raw.length > 0;
+  const q = `%${raw}%`;
+  const hasCats = categorySlugs.length > 0;
+  try {
+    const base = db
+      .select({
+        id: topics.id,
+        name: topics.name,
+        summary: topics.summary,
+        slug: topics.slug,
+        createdAt: topics.createdAt,
+        updatedAt: topics.updatedAt,
+        categoryId: topics.categoryId,
+        categoryName: categories.name,
+        categorySlug: categories.slug,
+      })
+      .from(topics)
+      .innerJoin(categories, eq(topics.categoryId, categories.id));
+
+    const conditions = [];
+
+    if (hasQuery) {
+      conditions.push(
+        or(
+          ilike(topics.name, q),
+          ilike(topics.slug, q),
+          ilike(topics.summary, q),
+          ilike(categories.name, q)
+        )
+      );
+    }
+
+    if (hasCats) {
+      conditions.push(inArray(categories.slug, categorySlugs));
+    }
+
+    const builder = conditions.length ? base.where(and(...conditions)) : base;
+
+    const rows = await builder.orderBy(desc(topics.createdAt));
+
+    return rows;
+  } catch (error) {
+    console.error("Failed to fetch filtered topics", error);
+  }
 }

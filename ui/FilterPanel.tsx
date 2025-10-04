@@ -1,12 +1,9 @@
 import SearchBar from "./Search";
 import CategoryButton from "./CategoryButton";
-import type { Category } from "@/types/data-types";
+import { getCategories } from "@/lib/query";
 
-type FilterPanelProps = {
-  categories: Category[];
-};
-
-export default function FilterPanel({ categories }: FilterPanelProps) {
+export default async function FilterPanel() {
+  const categories = await getCategories();
   return (
     <div className="bg-slate-800 rounded-xl shadow-sm border border-slate-700/50 p-6 mb-8">
       <div className="mb-6">
@@ -17,7 +14,7 @@ export default function FilterPanel({ categories }: FilterPanelProps) {
           {categories.map((cat) => {
             return (
               <li key={cat.id}>
-                <CategoryButton name={cat.name} />
+                <CategoryButton name={cat.name} slug={cat.slug} />
               </li>
             );
           })}

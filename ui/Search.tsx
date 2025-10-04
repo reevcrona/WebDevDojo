@@ -1,5 +1,23 @@
+"use client";
 import { Search } from "lucide-react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 export default function SearchBar() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleSearch = useDebouncedCallback((term) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (term) {
+      params.set("query", term);
+    } else {
+      params.delete("query");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
   return (
     <div>
       <label
@@ -15,6 +33,8 @@ export default function SearchBar() {
           type="search"
           id="search"
           placeholder="Search topics..."
+          onChange={(e) => handleSearch(e.target.value)}
+          defaultValue={searchParams.get("query")?.toString()}
         />
       </div>
     </div>
