@@ -1,6 +1,6 @@
-import FilterPanel from "@/ui/FilterPanel";
+import FilterPanel from "@/ui/topics-components/FilterPanel";
 import Container from "@/ui/Container";
-import TopicsGrid from "@/ui/TopicsGrid";
+import TopicsGrid from "@/ui/topics-components/TopicsGrid";
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;
