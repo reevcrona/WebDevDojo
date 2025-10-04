@@ -9,6 +9,10 @@ export async function getCategories() {
   return rows;
 }
 
+export async function getTopics() {
+  return db.query.topics.findMany();
+}
+
 export async function getTopicsByCategorySlug(slug: string) {
   const category = db
     .select({ id: categories.id })
