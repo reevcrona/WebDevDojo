@@ -22,7 +22,7 @@ export default async function Page(props: {
             Browse and discover learning resources
           </p>
         </div>
-        <FilterPanel selectedSlugs={selectedSlugs} />
+        <FilterPanel />
         <TopicsGrid query={query} selectedCategorySlugs={selectedSlugs} />
       </Container>
     </main>
