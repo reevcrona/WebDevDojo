@@ -11,14 +11,6 @@ const CategorySchema = z.object({
   slug: trimmed.refine((s) => s === s.toLowerCase(), {
     message: "Slug must be lowercase",
   }),
-  imageAlt: trimmed.max(120, "Keep alt text concise (<120 chars)"),
-  imageUrl: trimmed.url().refine((u) => u.startsWith("https://"), {
-    message: "Image URL must start with https://",
-  }),
-  imageMeta: z.object({
-    width: z.number().int().positive(),
-    height: z.number().int().positive(),
-  }),
 });
 
 const TopicSchema = z.object({
@@ -61,9 +53,6 @@ async function main() {
         .values({
           name: category.name,
           slug: category.slug,
-          imageAlt: category.imageAlt,
-          imageUrl: category.imageUrl,
-          imageMeta: category.imageMeta,
         })
         .returning({ id: categories.id });
       console.log(`Inserted category: ${category.name}`);

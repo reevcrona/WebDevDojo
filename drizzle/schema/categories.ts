@@ -6,11 +6,6 @@ export const categories = pgTable("categories", {
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
 
-  imageUrl: text("image_url").notNull(),
-  imageAlt: text("image_alt").notNull(),
-  imageMeta: jsonb("image_meta")
-    .$type<{ width: number; height: number }>()
-    .notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),

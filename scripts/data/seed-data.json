@@ -2,10 +2,7 @@
   "javascript": {
     "category": {
       "name": "Javascript",
-      "slug": "javascript",
-      "imageUrl": "https://yquzvewfiypxbhkuzkew.supabase.co/storage/v1/object/public/image-bucket/javascript-logo.png",
-      "imageAlt": "Logo of Javascript",
-      "imageMeta": { "width": 1280, "height": 1280 }
+      "slug": "javascript"
     },
     "topics": [
       {
@@ -23,10 +20,7 @@
   "typescript": {
     "category": {
       "name": "Typescript",
-      "slug": "typescript",
-      "imageUrl": "https://yquzvewfiypxbhkuzkew.supabase.co/storage/v1/object/public/image-bucket/typescript-logo.png",
-      "imageAlt": "Logo of Typescript",
-      "imageMeta": { "width": 512, "height": 512 }
+      "slug": "typescript"
     },
     "topics": [
       {
@@ -44,10 +38,7 @@
   "react": {
     "category": {
       "name": "React",
-      "slug": "react",
-      "imageUrl": "https://yquzvewfiypxbhkuzkew.supabase.co/storage/v1/object/public/image-bucket/react-logo.png",
-      "imageAlt": "Logo of React",
-      "imageMeta": { "width": 2400, "height": 2400 }
+      "slug": "react"
     },
     "topics": [
       {
@@ -65,10 +56,7 @@
   "networking": {
     "category": {
       "name": "Network",
-      "slug": "network",
-      "imageUrl": "https://yquzvewfiypxbhkuzkew.supabase.co/storage/v1/object/public/image-bucket/network-image.jpg",
-      "imageAlt": "Illustration of a computer network",
-      "imageMeta": { "width": 4500, "height": 4500 }
+      "slug": "network"
     },
     "topics": [
       {
