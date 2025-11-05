@@ -5,6 +5,7 @@ type TopicCardProps = {
     name: string;
     summary: string | null;
     categoryName: string;
+    slug: string;
   };
 };
 
@@ -16,14 +17,14 @@ const colorMap: Record<string, string> = {
 };
 
 export default function TopicCard({ data }: TopicCardProps) {
-  const { name, summary, categoryName } = data;
+  const { name, summary, categoryName, slug } = data;
 
   const badgeColor = colorMap[categoryName] ?? "bg-slate-200";
 
   return (
     <Link
       className="group relative bg-slate-800 rounded-xl border border-slate-700/50 p-6 transition-all duration-200 hover:shadow-lg hover:border-slate-600 text-left overflow-hidden"
-      href="/"
+      href={`/topics/${slug}`}
     >
       <div className="flex items-start justify-between mb-3">
         <span

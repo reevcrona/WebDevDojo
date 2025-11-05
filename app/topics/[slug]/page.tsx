@@ -1,5 +1,5 @@
-import { getTopicsByCategorySlug } from "@/lib/query";
-import Link from "next/link";
+import { getTopicBySlug } from "@/lib/query";
+
 export default async function Page({
   params,
 }: {
@@ -7,22 +7,12 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const topics = await getTopicsByCategorySlug(slug);
-  console.log(topics);
+  const topic = await getTopicBySlug(slug);
+  console.log(topic);
   return (
     <>
-      <ul className="flex justify-evenly w-full mt-10">
-        {topics.map((topic) => {
-          return (
-            <li key={topic.id} className="flex flex-col gap-2">
-              <Link href={`/categories/${slug}/${topic.slug}`}>
-                <h2>{topic.name}</h2>
-                <p className="text-xs">{topic.summary}</p>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <h1>{topic?.name}</h1>
+      <p>{topic?.summary}</p>
     </>
   );
 }

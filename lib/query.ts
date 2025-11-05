@@ -37,6 +37,12 @@ export async function getTopicsByCategorySlug(slug: string) {
   });
 }
 
+export async function getTopicBySlug(slug: string) {
+  return db.query.topics.findFirst({
+    where: (t, { eq }) => eq(t.slug, slug),
+  });
+}
+
 export async function getFilteredTopics(
   query: string,
   categorySlugs: string[] = []

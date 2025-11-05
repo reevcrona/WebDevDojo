@@ -23,6 +23,7 @@ export default async function TopicsGrid({
                 name: topic.name,
                 summary: topic.summary,
                 categoryName: topic.categoryName,
+                slug: topic.slug,
               }}
             />
           );
