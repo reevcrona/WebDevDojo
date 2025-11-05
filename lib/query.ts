@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema/categories";
+import { topicOverviews } from "@/drizzle/schema/topicOverviews";
 import { eq, ilike, or, and, desc, inArray } from "drizzle-orm";
 import { topics } from "@/drizzle/schema";
 export async function getCategories() {
@@ -40,6 +41,19 @@ export async function getTopicsByCategorySlug(slug: string) {
 export async function getTopicBySlug(slug: string) {
   return db.query.topics.findFirst({
     where: (t, { eq }) => eq(t.slug, slug),
+  });
+}
+
+export async function getTopicOverviewBySlug(slug: string) {
+  const topic = await db.query.topics.findFirst({
+    where: (t, { eq }) => eq(t.slug, slug),
+    columns: { id: true },
+  });
+
+  if (!topic) return;
+
+  return db.query.topicOverviews.findFirst({
+    where: (t, { eq }) => eq(t.topicId, topic.id),
   });
 }
 

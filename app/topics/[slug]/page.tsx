@@ -1,4 +1,5 @@
-import { getTopicBySlug } from "@/lib/query";
+import { getTopicOverviewBySlug } from "@/lib/query";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
 
 export default async function Page({
   params,
@@ -7,12 +8,8 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const topic = await getTopicBySlug(slug);
-  console.log(topic);
-  return (
-    <>
-      <h1>{topic?.name}</h1>
-      <p>{topic?.summary}</p>
-    </>
-  );
+  const topicOverview = await getTopicOverviewBySlug(slug);
+  const markdown = topicOverview?.mdx;
+  console.log(topicOverview);
+  return <MDXRemote source={markdown || ""} components={{}} />;
 }
