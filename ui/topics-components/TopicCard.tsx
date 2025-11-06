@@ -24,7 +24,7 @@ export default function TopicCard({ data }: TopicCardProps) {
   return (
     <Link
       className="group relative bg-slate-800 rounded-xl border border-slate-700/50 p-6 transition-all duration-200 hover:shadow-lg hover:border-slate-600 text-left overflow-hidden"
-      href={`/topics/${slug}`}
+      href={`/topics/${slug}/overview`}
     >
       <div className="flex items-start justify-between mb-3">
         <span
