@@ -1,7 +1,7 @@
 "use client";
+import { Hero } from "@/components/hero";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { set } from "zod";
 
 type ClientLinkProps = {
   slug: string;
@@ -19,5 +19,16 @@ export default function ClientLink({ children, slug }: ClientLinkProps) {
 
   const href = `${basePath}/${slug}`;
 
-  return <Link href={href}>{children}</Link>;
+  const isActive = pathName === href;
+
+  return (
+    <Link
+      className={`${
+        isActive ? "text-blue-400 font-semibold" : "text-gray-300"
+      } hover:text-blue-400`}
+      href={href}
+    >
+      {children}
+    </Link>
+  );
 }
