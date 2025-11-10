@@ -24,8 +24,10 @@ export default function ClientLink({ children, slug }: ClientLinkProps) {
   return (
     <Link
       className={`${
-        isActive ? "text-blue-400 font-semibold" : "text-gray-300"
-      } hover:text-blue-400`}
+        isActive
+          ? "text-[#4a90e2] font-semibold border-b-2 border-[#4a90e2] py-2"
+          : "text-gray-300"
+      } hover:text-[#4a90e2]`}
       href={href}
     >
       {children}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Lexend } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Container from "@/ui/Container";
 import "./globals.css";
@@ -20,6 +20,12 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const lexend = Lexend({
+  variable: "--font-lexend",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased bg-slate-900/95 `}>
+      <body className={`${lexend.className} antialiased bg-[#101622] `}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
