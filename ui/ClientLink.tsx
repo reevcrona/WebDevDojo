@@ -25,7 +25,7 @@ export default function ClientLink({ children, slug }: ClientLinkProps) {
     <Link
       className={`${
         isActive
-          ? "text-[#4a90e2] font-semibold border-b-2 border-[#4a90e2] py-2"
+          ? "text-[#4a90e2] font-semibold border-b-2 border-[#4a90e2] py-2.5"
           : "text-gray-300"
       } hover:text-[#4a90e2]`}
       href={href}
