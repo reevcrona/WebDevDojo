@@ -1,10 +1,15 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
+import { topicOverviews } from "@/drizzle/schema";
 import { z } from "zod";
 import seedData from "../data/seed-data.json" assert { type: "json" };
 
 const trimmed = z.string().trim().min(1);
+
+const TopicDataSchema = z.object({
+  mdx: trimmed,
+});
 
 const CategorySchema = z.object({
   name: trimmed,
@@ -19,6 +24,7 @@ const TopicSchema = z.object({
     message: "Slug must be lowercase",
   }),
   summary: z.string().trim().optional(),
+  topicsData: TopicDataSchema.optional(),
 });
 
 const SeedDataSchema = z.record(
@@ -40,6 +46,7 @@ async function main() {
   const data = validated.data;
 
   console.log("Clearing existing data...");
+  await db.delete(topicOverviews);
   await db.delete(topics);
   await db.delete(categories);
   console.log("Data cleared");
@@ -58,18 +65,36 @@ async function main() {
       console.log(`Inserted category: ${category.name}`);
 
       if (categoryTopics.length > 0) {
-        await tx.insert(topics).values(
-          categoryTopics.map((topic) => ({
-            name: topic.name,
-            slug: topic.slug,
-            categoryId: insertedCategory.id,
-            summary: topic.summary || null,
-          }))
-        );
+        const insertedTopics = await tx
+          .insert(topics)
+          .values(
+            categoryTopics.map((topic) => ({
+              name: topic.name,
+              slug: topic.slug,
+              categoryId: insertedCategory.id,
+              summary: topic.summary || null,
+            }))
+          )
+          .returning({ id: topics.id });
 
         console.log(
           `✅ Inserted ${categoryTopics.length} topics for ${category.name}`
         );
+        const overviewRows = categoryTopics.flatMap((topic, index) => {
+          if (!topic.topicsData) return [];
+          return [
+            {
+              mdx: topic.topicsData.mdx,
+              topicId: insertedTopics[index].id,
+            },
+          ];
+        });
+        if (overviewRows.length > 0) {
+          await tx.insert(topicOverviews).values(overviewRows);
+          console.log(
+            `📝 Inserted ${overviewRows.length} topicOverviews for ${category.name}`
+          );
+        }
       }
     }
   });
