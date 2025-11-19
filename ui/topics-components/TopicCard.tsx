@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { getIcon } from "@/utils/getTopicIcon";
+import { getIcon, iconFromSlug } from "@/utils/getTopicIcon";
 type TopicCardProps = {
   data: {
     name: string;
@@ -11,16 +11,18 @@ type TopicCardProps = {
 };
 
 const colorMap: Record<string, string> = {
-  Javascript: "bg-yellow-500/90 text-black",
-  Typescript: "bg-blue-400/90 text-black",
-  React: "bg-cyan-400/90 text-black",
-  Network: "bg-slate-200 text-black",
+  Javascript: "text-yellow-400",
+  Typescript: "text-blue-400",
+  React: "text-cyan-400",
+  Network: "text-slate-200",
 };
 
 export default function TopicCard({ data }: TopicCardProps) {
   const { name, summary, categoryName, slug } = data;
 
   const badgeColor = colorMap[categoryName] ?? "bg-slate-200";
+  const iconColor = colorMap[categoryName] ?? "text-slate-200";
+  const iconName = iconFromSlug(categoryName);
 
   return (
     <Link
@@ -28,10 +30,10 @@ export default function TopicCard({ data }: TopicCardProps) {
       href={`/topics/${slug}/overview`}
     >
       <div className="flex items-start justify-between mb-3">
-        <div className="flex gap-4">
-          {getIcon(slug, { className: `text-${badgeColor}` })}
+        <div className="flex gap-1 items-center">
+          {getIcon(iconName, { className: iconColor, size: 20 })}
           <span
-            className={`${badgeColor} px-2.5 py-1 rounded-md text-xs font-medium`}
+            className={`${badgeColor} px-2.5 py-1 rounded-md text-normal font-bold`}
           >
             {categoryName}
           </span>

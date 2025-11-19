@@ -1,7 +1,6 @@
 import { db } from "@/lib/db";
 import { categories, topicOverviews } from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
-import { topicOverviews } from "@/drizzle/schema";
 import { z } from "zod";
 import seedData from "../data/seed-data.json" assert { type: "json" };
 
