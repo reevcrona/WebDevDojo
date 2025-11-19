@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Lexend } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import Container from "@/ui/Container";
+import Container from "@/layout/Container";
+import Navbar from "@/layout/Navbar";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -40,6 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           <main className="flex justify-center min-h-screen p-12">
             <Container>{children}</Container>
           </main>

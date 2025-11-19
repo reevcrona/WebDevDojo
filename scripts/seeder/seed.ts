@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { categories, topicOverviews } from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
+import { topicOverviews } from "@/drizzle/schema";
 import { z } from "zod";
 import seedData from "../data/seed-data.json" assert { type: "json" };
 
@@ -75,7 +76,7 @@ async function main() {
               summary: topic.summary || null,
             }))
           )
-          .returning({ id: topics.id, slug: topics.slug });
+          .returning({ id: topics.id });
 
         console.log(
           `✅ Inserted ${categoryTopics.length} topics for ${category.name}`

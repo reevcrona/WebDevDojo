@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { getIcon } from "@/utils/getTopicIcon";
 type TopicCardProps = {
   data: {
     name: string;
@@ -27,11 +28,14 @@ export default function TopicCard({ data }: TopicCardProps) {
       href={`/topics/${slug}/overview`}
     >
       <div className="flex items-start justify-between mb-3">
-        <span
-          className={`${badgeColor} px-2.5 py-1 rounded-md text-xs font-medium`}
-        >
-          {categoryName}
-        </span>
+        <div className="flex gap-4">
+          {getIcon(slug, { className: `text-${badgeColor}` })}
+          <span
+            className={`${badgeColor} px-2.5 py-1 rounded-md text-xs font-medium`}
+          >
+            {categoryName}
+          </span>
+        </div>
         <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
       </div>
 
