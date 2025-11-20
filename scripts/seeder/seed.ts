@@ -3,6 +3,7 @@ import { categories, topicOverviews } from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
 import { z } from "zod";
 import seedData from "../data/seed-data.json" assert { type: "json" };
+import { runRelatedSeed } from "../seed-related-topics";
 
 const trimmed = z.string().trim().min(1);
 
@@ -97,7 +98,9 @@ async function main() {
         }
       }
     }
+    await runRelatedSeed(tx);
   });
+
   console.log("🎉 Seeding completed successfully!");
   process.exit(0);
 }
