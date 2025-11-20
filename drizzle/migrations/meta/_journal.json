@@ -22,6 +22,13 @@
       "when": 1762290645953,
       "tag": "0002_jittery_zaran",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1763648910893,
+      "tag": "0003_fast_leopardon",
+      "breakpoints": true
     }
   ]
 }
