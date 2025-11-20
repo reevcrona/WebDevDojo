@@ -1,4 +1,4 @@
-import { getTopicOverviewBySlug } from "@/lib/query";
+import { getTopicOverviewBySlug, getRelatedTopics } from "@/lib/query";
 import { evaluate, type EvaluateOptions } from "next-mdx-remote-client/rsc";
 import TableOfContent from "@/ui/overview-components/TableOfContent";
 import LearnSection from "@/ui/overview-components/LearnSection";
@@ -6,6 +6,7 @@ import { slugify } from "@/lib/slugify";
 import type { TocItem } from "@/types/tocItem";
 import OverviewHeader from "@/ui/overview-components/OverviewHeader";
 import QuickActions from "@/ui/overview-components/QuickActions";
+import TopicCard from "@/ui/topics-components/TopicCard";
 type Scope = {
   toc?: TocItem[];
 };
@@ -21,10 +22,14 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const topicOverview = await getTopicOverviewBySlug(slug);
+  const [topicOverview, relatedTopics] = await Promise.all([
+    getTopicOverviewBySlug(slug),
+    getRelatedTopics(slug),
+  ]);
 
   const markdown = topicOverview?.mdx || "";
 
+  console.log(relatedTopics);
   const options: EvaluateOptions<Scope> = {
     parseFrontmatter: true,
   };
@@ -48,7 +53,23 @@ export default async function Page({
         summary={topicOverview?.topic.summary}
       />
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
-        <main className="lg:col-span-2 flex flex-col gap-12">{content}</main>
+        <main className="lg:col-span-2 flex flex-col gap-12">
+          {content}
+
+          <div className="w-full">
+            {relatedTopics.map((topic) => (
+              <TopicCard
+                key={topic.id}
+                data={{
+                  name: topic.name,
+                  summary: topic.summary,
+                  categoryName: topic.categoryName,
+                  slug: topic.slug,
+                }}
+              />
+            ))}
+          </div>
+        </main>
         <aside className="flex flex-col gap-10">
           <TableOfContent toc={toc} />
           <QuickActions />
