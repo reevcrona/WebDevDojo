@@ -29,7 +29,6 @@ export default async function Page({
 
   const markdown = topicOverview?.mdx || "";
 
-  console.log(relatedTopics);
   const options: EvaluateOptions<Scope> = {
     parseFrontmatter: true,
   };
@@ -46,6 +45,14 @@ export default async function Page({
     id: slugify(s.title),
   }));
 
+  if (relatedTopics.length > 0) {
+    toc.push({
+      depth: 2,
+      value: "Related Topics",
+      id: slugify("related topics"),
+    });
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <OverviewHeader
@@ -55,20 +62,24 @@ export default async function Page({
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
         <main className="lg:col-span-2 flex flex-col gap-12">
           {content}
-
-          <div className="w-full">
-            {relatedTopics.map((topic) => (
-              <TopicCard
-                key={topic.id}
-                data={{
-                  name: topic.name,
-                  summary: topic.summary,
-                  categoryName: topic.categoryName,
-                  slug: topic.slug,
-                }}
-              />
-            ))}
-          </div>
+          {relatedTopics.length > 0 && (
+            <div id="related-topics" className="flex flex-col gap-4">
+              <h3 className="text-2xl font-bold text-[#e5e7eb]">
+                Related Topics
+              </h3>
+              {relatedTopics.map((topic) => (
+                <TopicCard
+                  key={topic.id}
+                  data={{
+                    name: topic.name,
+                    summary: topic.summary,
+                    categoryName: topic.categoryName,
+                    slug: topic.slug,
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </main>
         <aside className="flex flex-col gap-10">
           <TableOfContent toc={toc} />
