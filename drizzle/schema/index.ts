@@ -4,3 +4,4 @@ export * from "@/drizzle/schema/topicOverviews";
 export * from "@/drizzle/schema/topicPrerequisites";
 export * from "@/drizzle/relations/relations";
 export * from "@/drizzle/schema/relatedTopics";
+export * from "@/drizzle/schema/topicResources";
