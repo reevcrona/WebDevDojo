@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema/categories";
-import { relatedTopics } from "@/drizzle/schema";
+import { relatedTopics, topicResources } from "@/drizzle/schema";
 import { eq, ilike, or, and, desc, inArray, asc } from "drizzle-orm";
 import { topics } from "@/drizzle/schema";
 export async function getCategories() {
@@ -55,6 +55,17 @@ export async function getRelatedTopics(slug: string) {
     .orderBy(asc(relatedTopics.weight));
 
   return related;
+}
+
+export async function getTopicResourcesByTopicSlug(slug: string) {
+  const topic = db
+    .select({ id: topics.id })
+    .from(topics)
+    .where(eq(topics.slug, slug));
+
+  return db.query.topicResources.findMany({
+    where: (tr, { inArray }) => inArray(tr.topicId, topic),
+  });
 }
 
 export async function getTopicsByCategorySlug(slug: string) {
