@@ -4,7 +4,7 @@ import { relatedSeedData } from "./data/related-topics-data";
 import type { Transaction } from "../types/db-types";
 
 export const runRelatedSeed = async (tx: Transaction) => {
-  console.log("Loaindg topics...");
+  console.log("Loading topics...");
   const topicsBySlug = await getTopicsBySlugMap(tx);
 
   const values = relatedSeedData.map(([topicSlug, relatedSlug, weight]) => {

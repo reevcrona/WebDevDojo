@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "topic_resources_topic_id_url_idx" ON "topic_resources" USING btree ("topic_id","url");
