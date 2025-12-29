@@ -1,10 +1,8 @@
-import Link from "next/link";
+import Hero from "@/ui/homePage-components/Hero";
 export default async function Home() {
   return (
-    <main className="flex flex-col items-center justify-center">
-      <Link className="text-3xl text-primary" href="/topics">
-        Categories
-      </Link>
-    </main>
+    <>
+      <Hero />
+    </>
   );
 }

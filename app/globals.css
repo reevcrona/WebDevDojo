@@ -13,4 +13,31 @@
   --shadow-hard-white: 6px 6px 0px 0px #ffffff;
   --shadow-hard-crimson: 6px 6px 0px 0px #db143c;
   --shadow-hard-xl: 12px 12px 0px 0px #000000;
+
+  --background-image-dojo-grid: linear-gradient(
+      to right,
+      rgba(20, 20, 20, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(20, 20, 20, 0.1) 1px, transparent 1px);
+
+  --spacing-grid-size: 40px;
+}
+
+@layer utilities {
+  .bg-dojo-grid {
+    background-image: var(--background-image-dojo-grid);
+    background-size: var(--spacing-grid-size) var(--spacing-grid-size);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #db143c;
+  border: 2px solid #000;
 }
