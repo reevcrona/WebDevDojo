@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Lexend } from "next/font/google";
+import { Anton, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Container from "@/layout/Container";
 import Navbar from "@/layout/Navbar";
@@ -15,14 +15,15 @@ export const metadata: Metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
+const anton = Anton({
+  weight: "400",
+  variable: "--font-anton",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const lexend = Lexend({
-  variable: "--font-lexend",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -34,7 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${lexend.className} antialiased bg-[#101622] `}>
+      <body
+        className={`${anton.variable} ${jetbrainsMono.variable} antialiased bg-backgroundLight `}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
