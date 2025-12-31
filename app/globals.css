@@ -2,8 +2,8 @@
 
 @theme {
   --color-primary: #db143c;
-  --color-background-light: #ffffff;
-  --color-background-dark: #000000;
+  --color-background-light: #f0f0f0;
+  --color-background-dark: #050505;
 
   --font-anton: var(--font-anton);
   --font-mono: var(--font-mono);

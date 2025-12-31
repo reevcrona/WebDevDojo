@@ -1,5 +1,6 @@
 "use client";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import type { Route } from "next";
 import clsx from "clsx";
 type CategoryButtonProps = {
   name: string;
@@ -35,17 +36,22 @@ export default function CategoryButton({ name, slug }: CategoryButtonProps) {
     if (csv) params.set("categories", csv);
     else params.delete("categories");
 
-    replace(`${pathname}?${params.toString()}`);
+    const url = `${pathname}?${params.toString()}` as Route;
+    replace(url);
   };
 
   const buttonStyling = clsx(
-    "relative inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium transition",
-    "bg-slate-700 text-slate-300 hover:bg-slate-600",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800",
-    "relative pl-5 cursor-pointer",
+    "border-2 border-black px-6 py-2 font-bold uppercase tracking-wider text-sm transition-all",
 
-    active &&
-      "text-sky-200 border-transparent ring-4 ring-sky-500/20 shadow-[0_0_0_2px_rgba(56,189,248,.55)]"
+    !active && [
+      "bg-white text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
+      "hover:bg-black hover:text-white hover:translate-x-1 hover:translate-y-1 hover:shadow-none",
+    ],
+
+    active && [
+      "bg-black text-white translate-x-1 translate-y-1 shadow-none",
+      "hover:border-primary hover:text-primary transition-colors",
+    ]
   );
 
   return (

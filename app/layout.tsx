@@ -45,7 +45,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex justify-center min-h-screen p-12 ">
+          <main className="flex justify-center min-h-screen p-12 bg-dojo-grid ">
             <Container>{children}</Container>
           </main>
         </ThemeProvider>
