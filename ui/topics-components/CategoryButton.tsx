@@ -41,7 +41,7 @@ export default function CategoryButton({ name, slug }: CategoryButtonProps) {
   };
 
   const buttonStyling = clsx(
-    "border-2 border-black px-6 py-2 font-bold uppercase tracking-wider text-sm transition-all",
+    "border-2 border-black px-6 py-2 font-bold uppercase tracking-wider text-sm transition-all cursor-pointer",
 
     !active && [
       "bg-white text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",

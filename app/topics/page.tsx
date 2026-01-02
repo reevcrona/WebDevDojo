@@ -14,11 +14,9 @@ export default async function Page(props: {
     .map((s) => s.trim())
     .filter(Boolean);
   return (
-    <main className="flex justify-center min-h-screen p-12">
-      <Container>
-        <FilterPanel />
-        <TopicsGrid query={query} selectedCategorySlugs={selectedSlugs} />
-      </Container>
-    </main>
+    <section className="flex flex-col justify-start min-h-screen">
+      <FilterPanel />
+      <TopicsGrid query={query} selectedCategorySlugs={selectedSlugs} />
+    </section>
   );
 }

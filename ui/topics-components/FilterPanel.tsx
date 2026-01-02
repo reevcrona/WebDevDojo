@@ -14,7 +14,7 @@ export default async function FilterPanel() {
         <h3 className="block text-4xl font-anton text-black uppercase leading-[0.9] mb-3">
           Development topics
         </h3>
-        <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex flex-wrap gap-4 items-center ">
           <span className="font-bold text-lg mr-2 uppercase font-mono">
             Filters
           </span>
@@ -28,8 +28,8 @@ export default async function FilterPanel() {
             })}
           </ul>
         </div>
+        <SearchBar />
       </div>
-      <SearchBar />
     </div>
   );
 }

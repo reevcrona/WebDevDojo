@@ -1,7 +1,8 @@
 "use client";
-import { Search } from "lucide-react";
+import { CornerDownLeft } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import type { Route } from "next";
 export default function SearchBar() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -15,21 +16,22 @@ export default function SearchBar() {
     } else {
       params.delete("query");
     }
-    replace(`${pathname}?${params.toString()}`);
+    const url = `${pathname}?${params.toString()}` as Route;
+    replace(url);
   }, 300);
 
   return (
     <div>
-      <label
-        htmlFor="search"
-        className="block text-sm font-medium text-slate-300 mb-3"
-      >
+      <label htmlFor="search" className="sr-only">
         Search
       </label>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-500" />
+        <CornerDownLeft
+          size={28}
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 text-black pointer-events-none"
+        />
         <input
-          className="w-full px-4 py-2.5 pl-10 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent transition-all bg-slate-900 text-white placeholder:text-slate-500"
+          className="w-full bg-white border-[6px] border-black p-6 text-2xl font-anton uppercase placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-0 transition-colors"
           type="search"
           id="search"
           placeholder="Search topics..."
