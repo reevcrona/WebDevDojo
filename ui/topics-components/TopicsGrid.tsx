@@ -13,7 +13,7 @@ export default async function TopicsGrid({
   const topics = await getFilteredTopics(query, selectedCategorySlugs);
   console.log(topics);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mt-14">
       {topics &&
         topics.map((topic) => {
           return (

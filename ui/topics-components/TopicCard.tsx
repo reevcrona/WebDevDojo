@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { getIcon, iconFromSlug } from "@/utils/getTopicIcon";
+
 type TopicCardProps = {
   data: {
     name: string;
@@ -11,40 +12,61 @@ type TopicCardProps = {
 };
 
 const colorMap: Record<string, string> = {
-  Javascript: "text-yellow-400",
-  Typescript: "text-blue-400",
-  React: "text-cyan-400",
-  Network: "text-slate-200",
+  Javascript: "bg-yellow-400",
+  Typescript: "bg-blue-400",
+  React: "bg-cyan-400",
+  Network: "bg-slate-200",
 };
 
 export default function TopicCard({ data }: TopicCardProps) {
   const { name, summary, categoryName, slug } = data;
 
-  const badgeColor = colorMap[categoryName] ?? "bg-slate-200";
-  const iconColor = colorMap[categoryName] ?? "text-slate-200";
+  const colorSetting = colorMap[categoryName] ?? "bg-slate-200";
   const iconName = iconFromSlug(categoryName);
 
   return (
     <Link
-      className="group relative bg-slate-800 rounded-xl border border-slate-700/50 p-6 transition-all duration-200 hover:shadow-lg hover:border-slate-600 text-left overflow-hidden"
       href={`/topics/${slug}/overview`}
+      className={`group relative bg-white border-4 border-black p-0 shadow-hard flex flex-col h-full min-h-[360px] transition-all duration-200 ease-out hover:scale-[1.02] active:shadow-none active:translate-y-1`}
     >
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex gap-1 items-center">
-          {getIcon(iconName, { className: iconColor, size: 20 })}
-          <span
-            className={`${badgeColor} px-2.5 py-1 rounded-md text-normal font-bold`}
-          >
-            {categoryName}
-          </span>
+      <div
+        className={`p-6 border-b-4 border-black ${colorSetting} flex justify-between items-start`}
+      >
+        <div className="w-12 h-12 bg-white border-2 shadow-hard-sm border-black flex items-center justify-center">
+          {getIcon(iconName, {
+            className: "text-3xl text-black",
+            size: 20,
+          })}
         </div>
-        <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+
+        {/* Arrow Container: Changes to black on hover.
+            Icon: Slides right when the whole card (group) is hovered.
+        */}
+        <div className="w-8 h-8 border-2 border-black bg-white flex items-center justify-center transition-colors duration-200 group-hover:bg-primary shadow-hard-sm">
+          <ChevronRight className="w-5 h-5 text-black transition-transform duration-200 group-hover:text-white" />
+        </div>
       </div>
 
-      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-slate-100">
-        {name}
-      </h3>
-      <p className="text-sm text-slate-400 leading-relaxed">{summary}</p>
+      <div className="p-8 flex flex-col grow">
+        <h3 className="text-4xl font-anton uppercase mb-4 leading-none tracking-normal text-black">
+          {name}
+        </h3>
+        <p className="font-mono text-sm font-medium text-gray-800 leading-snug tracking-tight mb-6">
+          {summary}
+        </p>
+
+        <div className="mt-auto">
+          <div className="border-t-2 border-dashed border-black w-full my-4"></div>
+          <div className="text-xs font-mono font-bold text-gray-500 mb-3 uppercase">
+            TAGS //
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <span className="inline-flex items-center px-2 py-1 border-2 border-black bg-white text-black text-xs font-mono font-bold uppercase shadow-hard-sm">
+              {categoryName}
+            </span>
+          </div>
+        </div>
+      </div>
     </Link>
   );
 }
