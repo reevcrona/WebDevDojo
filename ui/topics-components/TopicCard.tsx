@@ -39,9 +39,6 @@ export default function TopicCard({ data }: TopicCardProps) {
           })}
         </div>
 
-        {/* Arrow Container: Changes to black on hover.
-            Icon: Slides right when the whole card (group) is hovered.
-        */}
         <div className="w-8 h-8 border-2 border-black bg-white flex items-center justify-center transition-colors duration-200 group-hover:bg-primary shadow-hard-sm">
           <ChevronRight className="w-5 h-5 text-black transition-transform duration-200 group-hover:text-white" />
         </div>
