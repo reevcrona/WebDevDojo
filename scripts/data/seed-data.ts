@@ -1,6 +1,6 @@
 import { SubCategory } from "@/types/constants";
 import { Environment } from "@/drizzle/schema";
-
+import { getRawMdx } from "@/utils/mdx-loader";
 interface TopicDataSeed {
   mdx: string;
   environment: Environment;
@@ -34,7 +34,7 @@ export const SEED_DATA: Record<string, CategorySeed> = {
         slug: "dom-manipulation",
         summary: "Update the UI by querying and changing nodes.",
         topicsData: {
-          mdx: '---\nsections:\n  - title: "What & Why"\n  - title: "Mental Model"\n  - title: "When to Use"\n  - title: "Pitfalls"\n---\n<LearnSection title="What & Why">\n  Generics in TypeScript let you write flexible, reusable code that works with multiple types while staying type-safe. \n  Instead of fixing a type, you define a type parameter (<code>&lt;T&gt;</code>) that adapts to what’s passed in. \n  This helps keep your code both <strong>reusable</strong> and <strong>reliable</strong>.\n</LearnSection>\n\n<LearnSection title="Mental Model">\n  Think of generics like blanks in a template. When you use the function or class, TypeScript fills in those blanks \n  with actual types. This means your code can adjust to whatever data type it’s given—like a function that works \n  the same for strings, numbers, or custom objects.\n</LearnSection>\n\n<LearnSection title="When to Use">\n  <ul>\n    <li>When you need a function or class to handle many types safely.</li>\n    <li>For data structures like arrays, maps, or caches that store various types.</li>\n    <li>When building reusable libraries, utilities, or hooks (like in React).</li>\n    <li>To preserve type relationships between inputs and outputs.</li>\n  </ul>\n</LearnSection>\n\n<LearnSection title="Pitfalls">\n  <ul>\n    <li>Avoid using <code>any</code>; it removes type safety.</li>\n    <li>Overly complex or unnecessary generics can make code harder to read.</li>\n    <li>Type inference can fail—sometimes you’ll need to specify the type manually.</li>\n    <li>JSX can misinterpret <code>&lt;T&gt;</code> as a tag; add a comma (<code>&lt;T,&gt;</code>) to fix this.</li>\n  </ul>\n</LearnSection>',
+          mdx: getRawMdx("javascript/dom-manipulation.mdx"),
           environment: "CLIENT SIDE",
           subcategories: "DOM MANIPULATION",
         },
