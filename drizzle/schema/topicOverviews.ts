@@ -7,15 +7,12 @@ import {
   check,
 } from "drizzle-orm/pg-core";
 import { topics } from "./topics";
-import { SubCategory, SUB_CATEGORIES } from "@/types/constants";
+import { SubCategory, SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
 import { sql } from "drizzle-orm";
 
-export const environmentEnum = pgEnum("environment", [
-  "CLIENT SIDE",
-  "SERVER SIDE",
-  "DESIGN SYSTEM",
-  "FULL STACK",
-]);
+export const environmentEnum = pgEnum("environment", ENVIRONMENTS);
+
+export type Environment = (typeof environmentEnum.enumValues)[number];
 
 export const topicOverviews = pgTable(
   "topic_overviews",
@@ -29,7 +26,7 @@ export const topicOverviews = pgTable(
 
     mdx: text("mdx").notNull(),
 
-    environment: environmentEnum("environment").notNull(),
+    environment: environmentEnum("environment").default("CLIENT SIDE"),
 
     subcategories: text("subcategories").$type<SubCategory>().notNull(),
 

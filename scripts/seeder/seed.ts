@@ -2,7 +2,8 @@ import { db } from "@/lib/db";
 import { categories, topicOverviews } from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
 import { z } from "zod";
-import seedData from "../data/seed-data.json" assert { type: "json" };
+import { SEED_DATA } from "../data/seed-data";
+import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
 import { runRelatedSeed } from "../seed-related-topics";
 import { runTopicResourceSeed } from "./seed-topic-resources";
 
@@ -10,6 +11,8 @@ const trimmed = z.string().trim().min(1);
 
 const TopicDataSchema = z.object({
   mdx: trimmed,
+  environment: z.enum(ENVIRONMENTS),
+  subcategories: z.enum(SUB_CATEGORIES),
 });
 
 const CategorySchema = z.object({
@@ -37,7 +40,7 @@ const SeedDataSchema = z.record(
 );
 
 async function main() {
-  const validated = SeedDataSchema.safeParse(seedData);
+  const validated = SeedDataSchema.safeParse(SEED_DATA);
 
   if (!validated.success) {
     console.error("Invalid seed data:", validated.error);
@@ -87,6 +90,8 @@ async function main() {
           return [
             {
               mdx: topic.topicsData.mdx,
+              environment: topic.topicsData.environment,
+              subcategories: topic.topicsData.subcategories,
               topicId: insertedTopics[index].id,
             },
           ];

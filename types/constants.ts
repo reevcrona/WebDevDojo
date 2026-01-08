@@ -7,3 +7,10 @@ export const SUB_CATEGORIES = [
 ] as const;
 
 export type SubCategory = (typeof SUB_CATEGORIES)[number];
+
+export const ENVIRONMENTS = [
+  "CLIENT SIDE",
+  "SERVER SIDE",
+  "DESIGN SYSTEM",
+  "FULL STACK",
+] as const;

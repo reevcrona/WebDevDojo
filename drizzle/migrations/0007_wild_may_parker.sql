@@ -1,0 +1,1 @@
+ALTER TABLE "topic_overviews" ALTER COLUMN "environment" SET DEFAULT 'CLIENT SIDE';
