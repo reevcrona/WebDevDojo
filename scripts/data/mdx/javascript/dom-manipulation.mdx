@@ -1,0 +1,52 @@
+---
+sections:
+  - title: "What & Why"
+  - title: "Mental Model"
+  - title: "When to Use"
+  - title: "Pitfalls"
+---
+
+<LearnSection title="What & Why">
+  Generics in TypeScript let you write flexible, reusable code that works with
+  multiple types while staying type-safe. Instead of fixing a type, you define a
+  type parameter that adapts to what’s passed in. This helps keep your code both{" "}
+  <strong>reusable</strong> and <strong>reliable</strong>.
+</LearnSection>
+
+<LearnSection title="Mental Model">
+  Think of generics like blanks in a template. When you use the function or
+  class, TypeScript fills in those blanks with actual types. This means your
+  code can adjust to whatever data type it’s given—like a function that works
+  the same for strings, numbers, or custom objects.
+</LearnSection>
+
+<LearnSection title="When to Use">
+  <ul>
+    <li>When you need a function or class to handle many types safely.</li>
+    <li>
+      For data structures like arrays, maps, or caches that store various types.
+    </li>
+    <li>
+      When building reusable libraries, utilities, or hooks (like in React).
+    </li>
+    <li>To preserve type relationships between inputs and outputs.</li>
+  </ul>
+</LearnSection>
+
+<LearnSection title="Pitfalls">
+  <ul>
+    <li>
+      Avoid using <code>any</code>; it removes type safety.
+    </li>
+    <li>
+      Overly complex or unnecessary generics can make code harder to read.
+    </li>
+    <li>
+      Type inference can fail—sometimes you’ll need to specify the type
+      manually.
+    </li>
+    <li>
+      JSX can misinterpret <code>&lt;T&gt;</code> as a tag...
+    </li>
+  </ul>
+</LearnSection>

@@ -1,7 +1,7 @@
 "use client";
-import { Hero } from "@/components/hero";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { Route } from "next";
 
 type ClientLinkProps = {
   slug: string;
@@ -17,7 +17,7 @@ export default function ClientLink({ children, slug }: ClientLinkProps) {
 
   const basePath = `/${segments.slice(0, topicsIndex + 2).join("/")}`;
 
-  const href = `${basePath}/${slug}`;
+  const href = `${basePath}/${slug}` as Route;
 
   const isActive = pathName === href;
 
