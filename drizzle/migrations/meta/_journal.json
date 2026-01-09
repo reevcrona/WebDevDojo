@@ -47,22 +47,8 @@
     {
       "idx": 6,
       "version": "7",
-      "when": 1767873000017,
-      "tag": "0006_dear_swordsman",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1767873203229,
-      "tag": "0007_wild_may_parker",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1767873481121,
-      "tag": "0008_jittery_guardsmen",
+      "when": 1767962852398,
+      "tag": "0006_handy_maelstrom",
       "breakpoints": true
     }
   ]

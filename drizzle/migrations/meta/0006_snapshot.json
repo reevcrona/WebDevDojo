@@ -1,5 +1,5 @@
 {
-  "id": "cb7a2c6a-6e7b-4ebe-903b-76110e2bcd8e",
+  "id": "f0244ce6-37b7-4575-b396-1569ca0f694d",
   "prevId": "a62d922b-d02a-4f48-bda9-8d49715d618d",
   "version": "7",
   "dialect": "postgresql",
@@ -166,7 +166,8 @@
           "type": "environment",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "'CLIENT SIDE'"
         },
         "subcategories": {
           "name": "subcategories",
