@@ -4,7 +4,7 @@ import TableOfContent from "@/ui/overview-components/TableOfContent";
 import LearnSection from "@/ui/overview-components/LearnSection";
 import { slugify } from "@/lib/slugify";
 import type { TocItem } from "@/types/tocItem";
-import OverviewHeader from "@/ui/overview-components/OverviewHeader";
+import OverviewHeader from "@/ui/overview-header-components/OverviewHeader";
 import QuickActions from "@/ui/overview-components/QuickActions";
 import TopicCard from "@/ui/topics-components/TopicCard";
 type Scope = {
