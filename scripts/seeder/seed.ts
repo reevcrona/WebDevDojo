@@ -11,8 +11,6 @@ const trimmed = z.string().trim().min(1);
 
 const TopicDataSchema = z.object({
   mdx: trimmed,
-  environment: z.enum(ENVIRONMENTS),
-  subcategories: z.enum(SUB_CATEGORIES),
 });
 
 const CategorySchema = z.object({
@@ -28,6 +26,8 @@ const TopicSchema = z.object({
     message: "Slug must be lowercase",
   }),
   summary: z.string().trim().optional(),
+  environment: z.enum(ENVIRONMENTS).default("CLIENT SIDE"),
+  subcategories: z.enum(SUB_CATEGORIES).default("NONE"),
   topicsData: TopicDataSchema.optional(),
 });
 
@@ -77,6 +77,8 @@ async function main() {
               name: topic.name,
               slug: topic.slug,
               categoryId: insertedCategory.id,
+              environment: topic.environment,
+              subcategories: topic.subcategories,
               summary: topic.summary || null,
             }))
           )
@@ -90,8 +92,6 @@ async function main() {
           return [
             {
               mdx: topic.topicsData.mdx,
-              environment: topic.topicsData.environment,
-              subcategories: topic.topicsData.subcategories,
               topicId: insertedTopics[index].id,
             },
           ];

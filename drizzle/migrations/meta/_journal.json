@@ -57,6 +57,13 @@
       "when": 1768218925588,
       "tag": "0007_fair_cyclops",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1768223546034,
+      "tag": "0008_glorious_george_stacy",
+      "breakpoints": true
     }
   ]
 }

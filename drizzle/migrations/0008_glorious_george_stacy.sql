@@ -1,0 +1,1 @@
+ALTER TYPE "public"."subCategoryEnum" RENAME TO "subcategory_enum";

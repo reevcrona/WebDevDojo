@@ -88,7 +88,14 @@ export async function getTopicBySlug(slug: string) {
 export async function getTopicOverviewBySlug(slug: string) {
   const topic = await db.query.topics.findFirst({
     where: (t, { eq }) => eq(t.slug, slug),
-    columns: { id: true, name: true, summary: true },
+    columns: {
+      id: true,
+      name: true,
+      summary: true,
+      environment: true,
+      subcategories: true,
+      updatedAt: true,
+    },
   });
 
   if (!topic) return;

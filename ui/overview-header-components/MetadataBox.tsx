@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
+import type { Environment } from "@/drizzle/schema";
+import type { SubCategory } from "@/types/constants";
 type MetadataBoxProps = {
   label: string;
-  value: string;
+  value: Environment | SubCategory | string | null;
 };
 
 export default function MetadataBox({ label, value }: MetadataBoxProps) {

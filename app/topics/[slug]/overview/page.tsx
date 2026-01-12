@@ -7,6 +7,7 @@ import type { TocItem } from "@/types/tocItem";
 import OverviewHeader from "@/ui/overview-header-components/OverviewHeader";
 import QuickActions from "@/ui/overview-components/QuickActions";
 import TopicCard from "@/ui/topics-components/TopicCard";
+import { notFound } from "next/navigation";
 type Scope = {
   toc?: TocItem[];
 };
@@ -26,6 +27,10 @@ export default async function Page({
     getTopicOverviewBySlug(slug),
     getRelatedTopics(slug),
   ]);
+
+  if (!topicOverview || !topicOverview.topic) {
+    return notFound();
+  }
 
   const markdown = topicOverview?.mdx || "";
 
@@ -55,10 +60,7 @@ export default async function Page({
 
   return (
     <div className="flex flex-col gap-6">
-      <OverviewHeader
-        header={topicOverview?.topic.name}
-        summary={topicOverview?.topic.summary}
-      />
+      <OverviewHeader topic={topicOverview?.topic} />
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
         <main className="lg:col-span-2 flex flex-col gap-12">
           {content}

@@ -3,7 +3,7 @@ import { categories } from "./categories";
 import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
 
 export const environmentEnum = pgEnum("environment", ENVIRONMENTS);
-export const subcategoriesEnum = pgEnum("subCategoryEnum", SUB_CATEGORIES);
+export const subcategoriesEnum = pgEnum("subcategory_enum", SUB_CATEGORIES);
 
 export type Environment = (typeof environmentEnum.enumValues)[number];
 
