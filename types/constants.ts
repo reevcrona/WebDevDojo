@@ -1,4 +1,5 @@
 export const SUB_CATEGORIES = [
+  "NONE",
   "WEB APIS",
   "DOM MANIPULATION",
   "EVENT LOGIC",

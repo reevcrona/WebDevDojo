@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { categories } from "@/drizzle/schema/categories";
-import { relatedTopics, topicResources } from "@/drizzle/schema";
+import { relatedTopics } from "@/drizzle/schema";
 import { eq, ilike, or, and, desc, inArray, asc } from "drizzle-orm";
 import { topics } from "@/drizzle/schema";
 export async function getCategories() {

@@ -1,5 +1,11 @@
-import { pgTable, uuid, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, uuid, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
 import { categories } from "./categories";
+import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
+
+export const environmentEnum = pgEnum("environment", ENVIRONMENTS);
+export const subcategoriesEnum = pgEnum("subCategoryEnum", SUB_CATEGORIES);
+
+export type Environment = (typeof environmentEnum.enumValues)[number];
 
 export const topics = pgTable("topics", {
   id: uuid("topic_id").defaultRandom().primaryKey(),
@@ -12,6 +18,10 @@ export const topics = pgTable("topics", {
   slug: text("slug").notNull().unique(),
 
   summary: text("summary"),
+
+  environment: environmentEnum("environment").default("CLIENT SIDE"),
+
+  subcategories: subcategoriesEnum("subcategory").default("NONE"),
 
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
