@@ -1,0 +1,1 @@
+ALTER TABLE "topic_prerequisites" ADD COLUMN "weight" integer NOT NULL;

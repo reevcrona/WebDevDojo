@@ -1,4 +1,4 @@
-import { pgTable, uuid, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable, uuid, primaryKey, integer } from "drizzle-orm/pg-core";
 import { topics } from "@/drizzle/schema/topics";
 
 export const topicPrerequisites = pgTable(
@@ -10,6 +10,7 @@ export const topicPrerequisites = pgTable(
     prerequisiteId: uuid("prerequisite_id")
       .notNull()
       .references(() => topics.id, { onDelete: "cascade" }),
+    weight: integer().notNull(),
   },
   (t) => [
     primaryKey({

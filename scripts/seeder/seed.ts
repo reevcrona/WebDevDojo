@@ -6,6 +6,7 @@ import { SEED_DATA } from "../data/seed-data";
 import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
 import { runRelatedSeed } from "../seed-related-topics";
 import { runTopicResourceSeed } from "./seed-topic-resources";
+import { runPrerequisitesSeed } from "./seed-prerequisites-topics";
 
 const trimmed = z.string().trim().min(1);
 
@@ -106,6 +107,7 @@ async function main() {
     }
     await runRelatedSeed(tx);
     await runTopicResourceSeed(tx);
+    await runPrerequisitesSeed(tx);
   });
 
   console.log("🎉 Seeding completed successfully!");
