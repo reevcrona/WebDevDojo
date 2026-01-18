@@ -13,3 +13,8 @@ export type TopicMetadata = {
   subcategories: SubCategory | null;
   updatedAt: Date;
 };
+
+export type TopicPrerequisiteMetadata = {
+  name: string;
+  slug: string;
+}[];

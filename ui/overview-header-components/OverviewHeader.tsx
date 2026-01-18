@@ -2,13 +2,20 @@
 import PrereqPill from "./PrereqPill";
 import PrereqContainer from "./PrereqContainer";
 import MetadataBox from "./MetadataBox";
-import type { TopicMetadata } from "@/types/data-types";
+import type {
+  TopicMetadata,
+  TopicPrerequisiteMetadata,
+} from "@/types/data-types";
 
 type OverviewHeaderProps = {
   topic: TopicMetadata;
+  topicPrerequisites: TopicPrerequisiteMetadata;
 };
 
-export default function OverviewHeader({ topic }: OverviewHeaderProps) {
+export default function OverviewHeader({
+  topic,
+  topicPrerequisites,
+}: OverviewHeaderProps) {
   const { name, environment, subcategories, updatedAt } = topic;
   const formattedDate =
     updatedAt instanceof Date ? updatedAt.toISOString().split("T")[0] : "N/A";
@@ -22,9 +29,9 @@ export default function OverviewHeader({ topic }: OverviewHeaderProps) {
 
       <div className="bg-black text-white border-t-4 border-black grid grid-cols-1 md:grid-cols-4 divide-y-4 divide-white md:divide-y-0 md:divide-x-4 md:divide-white font-mono text-sm">
         <PrereqContainer>
-          <PrereqPill>HTML</PrereqPill>
-          <PrereqPill>JAVASCRIPT</PrereqPill>
-          <PrereqPill>CSS</PrereqPill>
+          {topicPrerequisites.map((p) => {
+            return <PrereqPill key={p.slug}>{p.name}</PrereqPill>;
+          })}
         </PrereqContainer>
 
         <MetadataBox label=" // ENVIRONMENT" value={environment} />

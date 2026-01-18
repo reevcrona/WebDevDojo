@@ -57,6 +57,33 @@ export async function getRelatedTopics(slug: string) {
   return related;
 }
 
+export async function getTopicPrerequisites(slug: string) {
+  const data = await db.query.topics.findFirst({
+    where: (t, { eq }) => eq(t.slug, slug),
+    columns: {
+      id: true,
+    },
+    with: {
+      prerequisites: {
+        limit: 3,
+        orderBy: (p, { asc }) => [asc(p.weight)],
+        with: {
+          prerequisiteDetails: {
+            columns: {
+              name: true,
+              slug: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  const prerequisitesForHeader =
+    data?.prerequisites.map((p) => p.prerequisiteDetails) ?? [];
+
+  return prerequisitesForHeader;
+}
+
 export async function getTopicResourcesByTopicSlug(slug: string) {
   const topic = db
     .select({ id: topics.id })
@@ -111,7 +138,7 @@ export async function getTopicOverviewBySlug(slug: string) {
 
 export async function getFilteredTopics(
   query: string,
-  categorySlugs: string[] = []
+  categorySlugs: string[] = [],
 ) {
   const raw = (query ?? "").trim();
   const hasQuery = raw.length > 0;
@@ -141,8 +168,8 @@ export async function getFilteredTopics(
           ilike(topics.name, q),
           ilike(topics.slug, q),
           ilike(topics.summary, q),
-          ilike(categories.name, q)
-        )
+          ilike(categories.name, q),
+        ),
       );
     }
 

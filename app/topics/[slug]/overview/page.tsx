@@ -1,4 +1,8 @@
-import { getTopicOverviewBySlug, getRelatedTopics } from "@/lib/query";
+import {
+  getTopicOverviewBySlug,
+  getRelatedTopics,
+  getTopicPrerequisites,
+} from "@/lib/query";
 import { evaluate, type EvaluateOptions } from "next-mdx-remote-client/rsc";
 import TableOfContent from "@/ui/overview-components/TableOfContent";
 import LearnSection from "@/ui/overview-components/LearnSection";
@@ -23,9 +27,10 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const [topicOverview, relatedTopics] = await Promise.all([
+  const [topicOverview, relatedTopics, topicPrerequisites] = await Promise.all([
     getTopicOverviewBySlug(slug),
     getRelatedTopics(slug),
+    getTopicPrerequisites(slug),
   ]);
 
   if (!topicOverview || !topicOverview.topic) {
@@ -60,7 +65,10 @@ export default async function Page({
 
   return (
     <div className="flex flex-col gap-6">
-      <OverviewHeader topic={topicOverview?.topic} />
+      <OverviewHeader
+        topic={topicOverview?.topic}
+        topicPrerequisites={topicPrerequisites}
+      />
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
         <main className="lg:col-span-2 flex flex-col gap-12">
           {content}
