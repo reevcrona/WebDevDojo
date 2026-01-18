@@ -2,7 +2,7 @@ import ClientLink from "../ClientLink";
 
 export default function TopicNav() {
   return (
-    <nav className="border-b border-[#282e39] p-2 mb-5">
+    <nav className="flex items-end pl-0 md:pl-8 space-x-2 relative z-10 translate-y-[4px]">
       <ul className="flex gap-5">
         <li>
           <ClientLink slug="overview">Overview</ClientLink>

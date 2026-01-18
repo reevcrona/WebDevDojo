@@ -25,9 +25,9 @@ export default function ClientLink({ children, slug }: ClientLinkProps) {
     <Link
       className={`${
         isActive
-          ? "text-[#4a90e2] font-semibold border-b-2 border-[#4a90e2] py-2.5"
-          : "text-gray-300"
-      } hover:text-[#4a90e2]`}
+          ? "h-12 px-8 flex items-center justify-center bg-black text-white border-4 border-black border-b-0 font-bold tracking-wider hover:bg-black/90"
+          : "h-10 px-6 flex items-center justify-center translate-y-1.5 bg-white text-black border-4 border-black border-b-0 font-bold tracking-wider hover:bg-primary hover:text-white transition-colors"
+      } `}
       href={href}
     >
       {children}
