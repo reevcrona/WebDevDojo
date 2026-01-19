@@ -6,12 +6,19 @@ import {
 import { evaluate, type EvaluateOptions } from "next-mdx-remote-client/rsc";
 import TableOfContent from "@/ui/overview-components/TableOfContent";
 import LearnSection from "@/ui/overview-components/LearnSection";
+import Summary from "@/ui/mdx-components/Summary";
+import InfoBlock from "@/ui/mdx-components/InfoBlock";
 import { slugify } from "@/lib/slugify";
 import type { TocItem } from "@/types/tocItem";
 import OverviewHeader from "@/ui/overview-header-components/OverviewHeader";
 import QuickActions from "@/ui/overview-components/QuickActions";
 import TopicCard from "@/ui/topics-components/TopicCard";
 import { notFound } from "next/navigation";
+import InfoBlockInlineCode from "@/ui/mdx-components/Infoblock-components/InfoBlockInlineCode";
+import InfoBlockListItem from "@/ui/mdx-components/Infoblock-components/InfoBlockListItem";
+import InfoBlockListContainer from "@/ui/mdx-components/Infoblock-components/InfoBlockListContainer";
+import InfoBlockHeader from "@/ui/mdx-components/Infoblock-components/InfoBlockHeader";
+import InfoBlockText from "@/ui/mdx-components/Infoblock-components/InfoBlockText";
 type Scope = {
   toc?: TocItem[];
 };
@@ -46,7 +53,16 @@ export default async function Page({
   const { content, frontmatter } = await evaluate<FrontMatter, Scope>({
     source: markdown,
     options,
-    components: { LearnSection },
+    components: {
+      LearnSection,
+      Summary,
+      InfoBlock,
+      InfoBlockInlineCode,
+      InfoBlockListItem,
+      InfoBlockListContainer,
+      InfoBlockHeader,
+      InfoBlockText,
+    },
   });
 
   const toc: TocItem[] = (frontmatter.sections ?? []).map((s) => ({

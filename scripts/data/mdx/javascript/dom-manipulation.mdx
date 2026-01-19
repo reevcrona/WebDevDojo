@@ -6,12 +6,39 @@ sections:
   - title: "Pitfalls"
 ---
 
-<LearnSection title="new javascript folder">
-  Generics in TypeScript let you write flexible, reusable code that works with
-  multiple types while staying type-safe. Instead of fixing a type, you define a
-  type parameter that adapts to what’s passed in. This helps keep your code both{" "}
-  <strong>reusable</strong> and <strong>reliable</strong>.
-</LearnSection>
+<Summary>
+  The Document Object Model (DOM) is a programming interface for web documents.
+  It represents the page so that programs can change the document structure,
+  style, and content. The DOM represents the document as nodes and objects; that
+  way, programming languages can connect to the page.
+</Summary>
+
+<InfoBlock>
+  <InfoBlockHeader title="Selecting Elements" tag="QUERY_SELECTOR" />
+  <InfoBlockText>
+    Before you can manipulate elements, you must first access them within the
+    document tree. Modern JavaScript provides powerful methods to target nodes
+    by ID, class, or tag name.
+  </InfoBlockText>
+
+  <InfoBlockListContainer>
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>document.getElementById()</InfoBlockInlineCode> -
+      Fast, specific selection by unique ID.
+    </InfoBlockListItem>
+
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>document.querySelector()</InfoBlockInlineCode> -
+      Versatile, uses CSS selector syntax.
+    </InfoBlockListItem>
+
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>document.querySelectorAll()</InfoBlockInlineCode> -
+      Returns a NodeList of all matches.
+    </InfoBlockListItem>
+
+  </InfoBlockListContainer>
+</InfoBlock>
 
 <LearnSection title="Mental Model">
   Think of generics like blanks in a template. When you use the function or

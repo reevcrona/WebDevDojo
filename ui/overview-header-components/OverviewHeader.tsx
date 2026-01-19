@@ -20,7 +20,7 @@ export default function OverviewHeader({
   const formattedDate =
     updatedAt instanceof Date ? updatedAt.toISOString().split("T")[0] : "N/A";
   return (
-    <div className="bg-white border-4 border-black shadow-hard relative z-20 flex flex-col">
+    <div className="bg-white border-4 border-black shadow-hard relative z-20 flex flex-col mb-8">
       <div className="p-8 md:p-12">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-2 max-w-4xl text-black">
           {name}
