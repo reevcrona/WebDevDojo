@@ -6,6 +6,7 @@ import InfoBlockListItem from "@/ui/mdx-components/Infoblock-components/InfoBloc
 import InfoBlockListContainer from "@/ui/mdx-components/Infoblock-components/InfoBlockListContainer";
 import InfoBlockHeader from "@/ui/mdx-components/Infoblock-components/InfoBlockHeader";
 import InfoBlockText from "@/ui/mdx-components/Infoblock-components/InfoBlockText";
+import { Pre } from "@/ui/mdx-components/CodeBlock";
 
 export const mdxComponents = {
   LearnSection,
@@ -16,4 +17,5 @@ export const mdxComponents = {
   InfoBlockListContainer,
   InfoBlockHeader,
   InfoBlockText,
+  pre: Pre,
 };
