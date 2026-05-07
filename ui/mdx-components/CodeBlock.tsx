@@ -9,7 +9,7 @@ export function Pre({ children, ...props }: PreProps) {
   const language = props["data-language"];
 
   return (
-    <div className="relative my-4">
+    <div className="relative my-4 border-l-primary border-l-8">
       {language && (
         <span
           className="

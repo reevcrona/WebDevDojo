@@ -43,40 +43,29 @@ sections:
 ```
 </InfoBlock>
 
-<LearnSection title="Mental Model">
-  Think of generics like blanks in a template. When you use the function or
-  class, TypeScript fills in those blanks with actual types. This means your
-  code can adjust to whatever data type it’s given—like a function that works
-  the same for strings, numbers, or custom objects.
-</LearnSection>
+<InfoBlock>
+  <InfoBlockHeader title="Modifying Content" tag="Inner_html" />
+  <InfoBlockText>
+    Once selected, element properties become mutable. You can change text,
+    inject HTML, or modify attributes dynamically based on user interaction or API data.
+  </InfoBlockText>
 
-<LearnSection title="When to Use">
-  <ul>
-    <li>When you need a function or class to handle many types safely.</li>
-    <li>
-      For data structures like arrays, maps, or caches that store various types.
-    </li>
-    <li>
-      When building reusable libraries, utilities, or hooks (like in React).
-    </li>
-    <li>To preserve type relationships between inputs and outputs.</li>
-  </ul>
-</LearnSection>
+  <InfoBlockListContainer>
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>element.textContent</InfoBlockInlineCode> -
+      Safe way to set text, ignores HTML tags.
+    </InfoBlockListItem>
 
-<LearnSection title="Pitfalls">
-  <ul>
-    <li>
-      Avoid using <code>any</code>; it removes type safety.
-    </li>
-    <li>
-      Overly complex or unnecessary generics can make code harder to read.
-    </li>
-    <li>
-      Type inference can fail—sometimes you’ll need to specify the type
-      manually.
-    </li>
-    <li>
-      JSX can misinterpret <code>&lt;T&gt;</code> as a tag...
-    </li>
-  </ul>
-</LearnSection>
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>element.innerHTML</InfoBlockInlineCode> -
+      Parses string as HTML. Watch for XSS!
+    </InfoBlockListItem>
+
+    <InfoBlockListItem>
+      <InfoBlockInlineCode>element.setAttribute()</InfoBlockInlineCode> -
+      Update IDs, src, href and more.
+    </InfoBlockListItem>
+
+  </InfoBlockListContainer>
+
+</InfoBlock>
