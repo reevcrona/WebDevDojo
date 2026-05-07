@@ -30,7 +30,6 @@ export function Pre({ children, ...props }: PreProps) {
         className="
           bg-background-dark text-background-light
           border-2 border-black
-          shadow-hard-sm
           p-4
           font-mono text-sm leading-relaxed
           overflow-x-auto

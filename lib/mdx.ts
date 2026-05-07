@@ -16,7 +16,7 @@ type Scope = {
 };
 
 const prettyCodeOptions: PrettyCodeOptions = {
-  theme: "dracula",
+  theme: "github-dark-default",
   keepBackground: false,
 };
 
