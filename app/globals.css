@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+  scroll-padding-top: 150px;
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-primary: #db143c;
   --color-background-light: #f0f0f0;
@@ -14,11 +19,8 @@
   --shadow-hard-crimson: 6px 6px 0px 0px #db143c;
   --shadow-hard-xl: 12px 12px 0px 0px #000000;
 
-  --background-image-dojo-grid: linear-gradient(
-      to right,
-      rgba(20, 20, 20, 0.1) 1px,
-      transparent 1px
-    ),
+  --background-image-dojo-grid:
+    linear-gradient(to right, rgba(20, 20, 20, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(20, 20, 20, 0.1) 1px, transparent 1px);
 
   --spacing-grid-size: 40px;
