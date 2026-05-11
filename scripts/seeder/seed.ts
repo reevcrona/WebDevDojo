@@ -7,6 +7,7 @@ import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
 import { runRelatedSeed } from "../seed-related-topics";
 import { runTopicResourceSeed } from "./seed-topic-resources";
 import { runPrerequisitesSeed } from "./seed-prerequisites-topics";
+import { runQuestionsSeed } from "./seed-questions";
 
 const trimmed = z.string().trim().min(1);
 
@@ -37,7 +38,7 @@ const SeedDataSchema = z.record(
   z.object({
     category: CategorySchema,
     topics: z.array(TopicSchema),
-  })
+  }),
 );
 
 async function main() {
@@ -59,7 +60,7 @@ async function main() {
 
   await db.transaction(async (tx) => {
     for (const [_key, { category, topics: categoryTopics }] of Object.entries(
-      data
+      data,
     )) {
       const [insertedCategory] = await tx
         .insert(categories)
@@ -81,12 +82,12 @@ async function main() {
               environment: topic.environment,
               subcategories: topic.subcategories,
               summary: topic.summary || null,
-            }))
+            })),
           )
           .returning({ id: topics.id });
 
         console.log(
-          `✅ Inserted ${categoryTopics.length} topics for ${category.name}`
+          `✅ Inserted ${categoryTopics.length} topics for ${category.name}`,
         );
         const overviewRows = categoryTopics.flatMap((topic, index) => {
           if (!topic.topicsData) return [];
@@ -100,7 +101,7 @@ async function main() {
         if (overviewRows.length > 0) {
           await tx.insert(topicOverviews).values(overviewRows);
           console.log(
-            `📝 Inserted ${overviewRows.length} topicOverviews for ${category.name}`
+            `📝 Inserted ${overviewRows.length} topicOverviews for ${category.name}`,
           );
         }
       }
@@ -108,6 +109,7 @@ async function main() {
     await runRelatedSeed(tx);
     await runTopicResourceSeed(tx);
     await runPrerequisitesSeed(tx);
+    await runQuestionsSeed(tx);
   });
 
   console.log("🎉 Seeding completed successfully!");
