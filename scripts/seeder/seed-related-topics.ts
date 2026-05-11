@@ -1,7 +1,7 @@
 import { relatedTopics } from "@/drizzle/schema";
-import { getTopicsBySlugMap } from "./seeder/seeder-utils/topicsBySlug";
-import { relatedSeedData } from "./data/related-topics-data";
-import type { Transaction } from "../types/db-types";
+import { getTopicsBySlugMap } from "./seeder-utils/topicsBySlug";
+import { relatedSeedData } from "../data/related-topics-data";
+import type { Transaction } from "../../types/db-types";
 
 export const runRelatedSeed = async (tx: Transaction) => {
   console.log("Loading topics...");

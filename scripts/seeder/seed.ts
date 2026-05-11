@@ -4,7 +4,7 @@ import { topics } from "@/drizzle/schema";
 import { z } from "zod";
 import { SEED_DATA } from "../data/seed-data";
 import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
-import { runRelatedSeed } from "../seed-related-topics";
+import { runRelatedSeed } from "./seed-related-topics";
 import { runTopicResourceSeed } from "./seed-topic-resources";
 import { runPrerequisitesSeed } from "./seed-prerequisites-topics";
 import { runQuestionsSeed } from "./seed-questions";
