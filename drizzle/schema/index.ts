@@ -5,3 +5,5 @@ export * from "@/drizzle/schema/topicPrerequisites";
 export * from "@/drizzle/relations/relations";
 export * from "@/drizzle/schema/relatedTopics";
 export * from "@/drizzle/schema/topicResources";
+export * from "@/drizzle/schema/questions";
+export * from "@/drizzle/schema/questionOptions";
