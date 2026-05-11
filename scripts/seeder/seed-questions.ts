@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { topics, questions, questionOptions } from "@/drizzle/schema";
 import { questionsSeedData } from "@/scripts/data/questions-data";
-
+import type { Transaction } from "@/types/db-types";
 const trimmed = z.string().trim().min(1);
 
 const QuestionSchema = z.object({
@@ -21,7 +21,7 @@ const QuestionSchema = z.object({
 
 const QuestionsSeedSchema = z.array(QuestionSchema);
 
-export async function runQuestionsSeed(tx: any) {
+export async function runQuestionsSeed(tx: Transaction) {
   const validated = QuestionsSeedSchema.safeParse(questionsSeedData);
   if (!validated.success) {
     throw new Error(
