@@ -1,13 +1,22 @@
 import { db } from "@/lib/db";
-import { categories, topicOverviews } from "@/drizzle/schema";
+import {
+  categories,
+  relatedTopics,
+  topicOverviews,
+  topicPrerequisites,
+  topicResources,
+} from "@/drizzle/schema";
 import { topics } from "@/drizzle/schema";
 import { z } from "zod";
 import { SEED_DATA } from "../data/seed-data";
 import { SUB_CATEGORIES, ENVIRONMENTS } from "@/types/constants";
-import { runRelatedSeed } from "./seed-related-topics";
 import { runTopicResourceSeed } from "./seed-topic-resources";
-import { runPrerequisitesSeed } from "./seed-prerequisites-topics";
 import { runQuestionsSeed } from "./seed-questions";
+import { runSeed } from "@/scripts/seeder/seeder";
+import { relatedSeedData } from "../data/related-topics-data";
+import { resolveTopicId } from "./seeder-utils/resolveTopicId";
+import { prerequisiteSeedData } from "../data/prerequisite-topics-data";
+import { topicResourcesData } from "../data/topic-resources-data";
 
 const trimmed = z.string().trim().min(1);
 
@@ -106,9 +115,46 @@ async function main() {
         }
       }
     }
-    await runRelatedSeed(tx);
-    await runTopicResourceSeed(tx);
-    await runPrerequisitesSeed(tx);
+    await runSeed(
+      tx,
+      relatedSeedData,
+      relatedTopics,
+      ([topicSlug, relatedSlug, weight], topicsBySlug) => ({
+        topicId: resolveTopicId(topicsBySlug, topicSlug),
+        relatedTopicId: resolveTopicId(topicsBySlug, relatedSlug),
+        weight,
+      }),
+      "related topics",
+    );
+    await runSeed(
+      tx,
+      prerequisiteSeedData,
+      topicPrerequisites,
+      ([topicSlug, preSlug, weight], topicsBySlug) => ({
+        topicId: resolveTopicId(topicsBySlug, topicSlug),
+        prerequisiteId: resolveTopicId(topicsBySlug, preSlug),
+        weight,
+      }),
+      "prerequisites",
+    );
+    await runSeed(
+      tx,
+      topicResourcesData,
+      topicResources,
+      (
+        { topicSlug, format, source, title, url, position, summary },
+        topicsBySlug,
+      ) => ({
+        topicId: resolveTopicId(topicsBySlug, topicSlug),
+        format,
+        source,
+        title,
+        url,
+        position,
+        summary,
+      }),
+      "topic resources",
+    );
     await runQuestionsSeed(tx);
   });
 
